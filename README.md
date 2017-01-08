@@ -26,7 +26,7 @@ Plugins utilizados:
 - Spring Boot Maven Plugin: este plugin é utilizado para criar artefatos executáveis de projetos Spring.
 
 Perfis disponíveis:
-- docker: este perfil permite criar uma imagem Docker;
+- docker: este perfil permite criar imagens Docker;
 - test: ao ativar esse perfil a axecução dos testes será habilitada, e o plugin Jacoco irá criar relatórios de testes e validar se a porcentagem de cobertura de testes foi alcançada;
 
 # Swagger
