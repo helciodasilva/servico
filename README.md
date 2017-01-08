@@ -4,7 +4,7 @@
 O projeto foi divido em três partes:
 - servico-api: API RestFull utilizada para disponibilizar os dados para outras aplicações;
 - servico-client: client Web da API servico-api;
-- servico-mysql-server: projeto Maven utilizado para criar uma imagem Docker contendo o banco de dados MySQL. Ao iniciar um container a partir dessa imagem o banco de dados servico será criado automaticamente.
+- servico-mysql-server: projeto Maven utilizado para criar uma imagem Docker contendo o banco de dados MySQL. Ao iniciar um container a partir dessa imagem será criado o banco servico, que é utilizado pela aplicação servico-api para persistir os dados.
 
 ## Tecnologias utilizadas no projeto:
 
@@ -25,12 +25,12 @@ Plugins utilizados:
 - Jacoco Maven Plugin: plugin usado para criar relatórios de testes e validar se a porcentagem de cobertura de testes foi alcançada;
 - Spring Boot Maven Plugin: este plugin é utilizado para criar artefatos executáveis de projetos Spring.
 
-Perfis:
-- docker: ao selecionar esse perfil  uma imagem Docker do projeto será criada;
+Perfis utilizados:
+- docker: este perfil permite criar uma imagem Docker;
 - test: ao ativar esse perfil a axecução dos testes será habilitada, e o plugin Jacoco irá criar relatórios de testes e validar se a porcentagem de cobertura de testes foi alcançada;
 
 # Swager
-Framework utilizado para documentar a API servico-client. Para visualizar a documentação, basta acessar http:<host>:8080/api-doc.
+Framework utilizado para documentar a API servico-client. Para visualizar a documentação, basta acessar o recurso /api-doc.
 
 # Criando Containers a partis das imagens
 - servico-mysql-server:
