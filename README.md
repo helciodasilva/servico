@@ -61,8 +61,8 @@ servico-mysql-server:
 
 servico-api:
 	
-	docker run -p 8080:8080 -d --link api:api --name=api helciodasilva/servico-api
+	docker run -p 8080:8080 -d --link mysql:mysql --name=api helciodasilva/servico-api
 
 servico-client:
 
-	docker run -p 8081:8081 -d --link client:client --name=client helciodasilva/servico-client
+	docker run -p 8081:8081 -d --link api:api helciodasilva/servico-client
