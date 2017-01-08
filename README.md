@@ -57,12 +57,12 @@ Para que os containers se comuniquem é necessário que os mesmos sejam interlig
 
 servico-mysql-server:
 
-	docker run -p 3306:3306 -d --name mysql servico-mysql-server
+	docker run -p 3306:3306 -d --name mysql helciodasilva/servico-mysql-server
 
 servico-api:
 	
-	docker run -p 8080:8080 -d --link api:api --name=api servico-api
+	docker run -p 8080:8080 -d --link api:api --name=api helciodasilva/servico-api
 
 servico-client:
 
-	docker run -p 8081:8081 -d --link client:client --name=client servico-client
+	docker run -p 8081:8081 -d --link client:client --name=client helciodasilva/servico-client
