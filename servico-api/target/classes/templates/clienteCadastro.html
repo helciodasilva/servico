@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title></title>
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+
+</head>
+<body>
+	<div class="container">
+		<div>
+			<h3>Cliente</h3>
+			<table class="table table-hover">
+				<tr>
+					<th>Nome:</th>
+				</tr>
+				<tr>
+					<td><span th:text="${cliente.nome}"></span></td>
+				</tr>
+			</table>
+			
+			<hr />
+			<h3>Serviços contratados</h3>
+			<table class="table table-hover">
+				<tr>
+					<th>Nome</th>
+					<th>Valor total</th>
+					<th>Valor com desconto</th>
+					<th></th>
+				</tr>
+				<tr th:each="compra: ${cliente.compras}">
+					<td><span th:text="${compra.servico.nome}"></span></td>
+					<td><span th:if="not ${compra.paga}" th:text="${compra.servico.preco}"></span></td>
+					<td><span th:if="not ${compra.paga}" th:text="${compra.valor}"></span></td>
+					<td><a th:if="not ${compra.paga}" th:href="@{/empresa/} + ${empresa.id} + @{/cliente/} + ${cliente.id} + @{/compra/} +  ${compra.id}  + @{?operacao=pagamento}">Efetuar pagamento</a></td>
+				</tr>
+			</table>
+
+			<hr/>
+			<h4>Contratar serviço</h4>
+			<form th:action="@{/empresa/} + ${empresa.id} + @{/cliente/} + ${cliente.id}" method="POST">
+				<div class="form-group">
+					<label for="tipo">Servico</label>
+					<select id="servico" class="form-control" name="servico">
+						<option value="" selected="selected">Selecione</option>
+						<option th:each="servico : ${servicos}" th:value="${servico.id}" th:text="${servico.nome} + ' - R$ ' + ${servico.preco}">tipoClientes</option>
+					</select>
+	
+					<label for="nome">Data de início</label>
+					<input type="text" class="form-control" id="dataInicio" name="dataInicio" placeholder="Data de início" />
+					
+					<label for="nome">Data de Fim</label>
+					<input type="text" class="form-control" id="dataFim" name="dataFim" placeholder="Data de Fim" />
+				
+				</div>
+				<button type="submit" class="btn btn-success">Contratar</button>
+			</form>
+
+		</div>
+					
+
+	</div>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+
+
+</body>
+
+</html>

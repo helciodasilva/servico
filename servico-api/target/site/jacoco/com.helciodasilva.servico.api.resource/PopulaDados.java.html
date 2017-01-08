@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PopulaDados.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">servico-api</a> &gt; <a href="index.source.html" class="el_package">com.helciodasilva.servico.api.resource</a> &gt; <span class="el_source">PopulaDados.java</span></div><h1>PopulaDados.java</h1><pre class="source lang-java linenums">package com.helciodasilva.servico.api.resource;
+
+import java.util.Arrays;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.helciodasilva.servico.api.enums.TipoCliente;
+import com.helciodasilva.servico.api.model.Cliente;
+import com.helciodasilva.servico.api.model.Compra;
+import com.helciodasilva.servico.api.model.Empresa;
+import com.helciodasilva.servico.api.model.Servico;
+import com.helciodasilva.servico.api.repository.ClienteRepository;
+import com.helciodasilva.servico.api.repository.EmpresaRepository;
+import com.helciodasilva.servico.api.repository.ServicoRepository;
+
+@RestController
+@RequestMapping(&quot;popula&quot;)
+<span class="nc" id="L21">public class PopulaDados {</span>
+
+	@Autowired
+	private ClienteRepository clienteRepository;
+
+	@Autowired
+	private EmpresaRepository empresaRepository;
+
+	@Autowired
+	private ServicoRepository servicoRepository;
+
+	@RequestMapping(method = RequestMethod.GET)
+	public void popula() {
+
+//		String inicio = &quot;01/12/2016&quot;;
+//		String fim = &quot;01/01/2017&quot;;
+//
+//		Servico servicoStore = new Servico(&quot;Licença Store WMAS&quot;, 5000D);
+//		Servico servicoUsc = new Servico(&quot;Curso Ciência da Computação&quot;, 1200D);
+//		Servico servicoFinch = new Servico(&quot;Licença Finch Catch&quot;, 3000D);
+//
+//		Cliente clienteStore = new Cliente(&quot;Cliente Store&quot;, null, TipoCliente.OURO);
+//		Cliente clienteUsc = new Cliente(&quot;Cliente USC&quot;, null, TipoCliente.PRATA);
+//		Cliente clienteFinch = new Cliente(&quot;Cliente Finch&quot;, null, TipoCliente.OURO);
+//
+//		CompraServico compraStore = new CompraServico(servicoStore, clienteStore, inicio, fim, false);
+//		CompraServico compraUsc = new CompraServico(servicoStore, clienteUsc, inicio, fim, false);
+//		CompraServico compraFinch = new CompraServico(servicoFinch, clienteFinch, inicio, fim, false);
+//
+//		clienteStore.setCompras(Arrays.asList(compraStore));
+//		clienteUsc.setCompras(Arrays.asList(compraUsc));
+//		clienteFinch.setCompras(Arrays.asList(compraFinch));
+//
+//		Empresa store = new Empresa(&quot;Store Automação&quot;, Arrays.asList(clienteStore), Arrays.asList(servicoStore));
+//		Empresa usc = new Empresa(&quot;USC&quot;, Arrays.asList(clienteUsc), Arrays.asList(servicoUsc));
+//		Empresa finch = new Empresa(&quot;Finch&quot;, Arrays.asList(clienteFinch), Arrays.asList(servicoFinch));
+//
+//		empresaRepository.save(store);
+//		empresaRepository.save(usc);
+//		empresaRepository.save(finch);
+
+<span class="nc" id="L62">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.8.201612092310</span></div></body></html>

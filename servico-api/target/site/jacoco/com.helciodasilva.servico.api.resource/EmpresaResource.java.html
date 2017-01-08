@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>EmpresaResource.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">servico-api</a> &gt; <a href="index.source.html" class="el_package">com.helciodasilva.servico.api.resource</a> &gt; <span class="el_source">EmpresaResource.java</span></div><h1>EmpresaResource.java</h1><pre class="source lang-java linenums">package com.helciodasilva.servico.api.resource;
+
+import java.net.URI;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import com.helciodasilva.servico.api.model.Cliente;
+import com.helciodasilva.servico.api.model.Compra;
+import com.helciodasilva.servico.api.model.Empresa;
+import com.helciodasilva.servico.api.model.Servico;
+import com.helciodasilva.servico.api.service.ClienteService;
+import com.helciodasilva.servico.api.service.CompraService;
+import com.helciodasilva.servico.api.service.EmpresaService;
+import com.helciodasilva.servico.api.service.ServicoService;
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
+/**
+ * Recurso Empresa.
+ * 
+ * @author Helcio da Silva
+ * @since 07/01/2017
+ */
+@RestController
+@RequestMapping(&quot;empresa&quot;)
+@Api(tags = &quot;Empresa&quot;)
+<span class="fc" id="L37">public class EmpresaResource {</span>
+
+	public static final String REGEX_MAPPER = &quot;(/empresa.*)&quot;;
+
+	@Autowired
+	private ClienteService clienteService;
+
+	@Autowired
+	private EmpresaService empresaService;
+
+	@Autowired
+	private ServicoService servicoService;
+
+	@Autowired
+	private CompraService compraService;
+
+	@ApiOperation(
+			value = &quot;&quot;, 
+			httpMethod = &quot;GET&quot;, 
+			notes = &quot;Retorna todas as empresas cadastradas.&quot;, 
+			response = ResponseEntity.class
+	)
+	@RequestMapping(method = RequestMethod.GET)
+	public ResponseEntity&lt;List&lt;Empresa&gt;&gt; findAll() {
+<span class="fc" id="L61">		List&lt;Empresa&gt; empresas = empresaService.findAll();</span>
+<span class="fc" id="L62">		return ResponseEntity.status(HttpStatus.OK).body(empresas);</span>
+	}
+
+	@ApiOperation(
+			value = &quot;&quot;, 
+			httpMethod = &quot;GET&quot;, 
+			notes = &quot;Retorna uma empresa a partir de um id.&quot;, 
+			response = ResponseEntity.class
+	)
+	@RequestMapping(value = &quot;/{id}&quot;, method = RequestMethod.GET)
+	public ResponseEntity&lt;Empresa&gt; findOne(@PathVariable Long id) {
+<span class="nc" id="L73">		Empresa empresa = empresaService.findOne(id);</span>
+<span class="nc" id="L74">		return ResponseEntity.status(HttpStatus.OK).body(empresa);</span>
+
+	}
+
+	@ApiOperation(
+			value = &quot;&quot;, 
+			httpMethod = &quot;POST&quot;, 
+			notes = &quot;Persiste um cliente.&quot;, 
+			response = ResponseEntity.class
+	)
+	@RequestMapping(value = &quot;/{id}/cliente&quot;, method = RequestMethod.POST)
+	public ResponseEntity&lt;?&gt; addCliente(@PathVariable(&quot;id&quot;) Long id, @RequestBody Cliente cliente) {
+<span class="nc" id="L86">		Empresa empresa = empresaService.findOne(id);</span>
+
+<span class="nc bnc" id="L88" title="All 2 branches missed.">		if (empresa == null) {</span>
+<span class="nc" id="L89">			return ResponseEntity.notFound().build();</span>
+		}
+<span class="nc" id="L91">		cliente.setId(null);</span>
+<span class="nc" id="L92">		clienteService.save(cliente);</span>
+<span class="nc" id="L93">		empresa.getClientes().add(cliente);</span>
+<span class="nc" id="L94">		empresaService.save(empresa);</span>
+<span class="nc" id="L95">		return ResponseEntity.ok().build();</span>
+	}
+
+	@ApiOperation(
+			value = &quot;&quot;, 
+			httpMethod = &quot;GET&quot;, 
+			notes = &quot;Retorna todos os serviços que uma empresa possui.&quot;, 
+			response = ResponseEntity.class
+	)
+	@RequestMapping(value = &quot;{id}/servico&quot;, method = RequestMethod.GET)
+	public ResponseEntity&lt;List&lt;Servico&gt;&gt; findAllServico(@PathVariable(&quot;id&quot;) Long id) {
+<span class="nc" id="L106">		Empresa empresa = empresaService.findOne(id);</span>
+<span class="nc bnc" id="L107" title="All 2 branches missed.">		if (empresa == null) {</span>
+<span class="nc" id="L108">			return ResponseEntity.notFound().build();</span>
+		}
+<span class="nc" id="L110">		return ResponseEntity.status(HttpStatus.OK).body(empresa.getServicos());</span>
+	}
+
+	@ApiOperation(
+			value = &quot;&quot;, 
+			httpMethod = &quot;GET&quot;, 
+			notes = &quot;Retorna um seviço a partir de um id.&quot;, 
+			response = ResponseEntity.class
+	)
+	@RequestMapping(value = &quot;/servico/{id}&quot;, method = RequestMethod.GET)
+	public ResponseEntity&lt;Servico&gt; findServico(@PathVariable(&quot;id&quot;) Long id) {
+<span class="nc" id="L121">		Servico servico = servicoService.findOne(id);</span>
+<span class="nc" id="L122">		return ResponseEntity.status(HttpStatus.OK).body(servico);</span>
+	}
+
+	@ApiOperation(
+			value = &quot;&quot;, 
+			httpMethod = &quot;POST&quot;, 
+			notes = &quot;Persiste um novo serviço.&quot;, 
+			response = ResponseEntity.class
+	)
+	@RequestMapping(value = &quot;/{id}/servico&quot;, method = RequestMethod.POST)
+	public ResponseEntity&lt;?&gt; addServico(@PathVariable(&quot;id&quot;) Long id, @RequestBody Servico servico) {
+<span class="nc" id="L133">		Empresa empresa = empresaService.findOne(id);</span>
+<span class="nc bnc" id="L134" title="All 2 branches missed.">		if (empresa == null) {</span>
+<span class="nc" id="L135">			return ResponseEntity.notFound().build();</span>
+		}
+<span class="nc" id="L137">		servico.setId(null);</span>
+<span class="nc" id="L138">		servicoService.save(servico);</span>
+<span class="nc" id="L139">		empresa.getServicos().add(servico);</span>
+<span class="nc" id="L140">		empresaService.save(empresa);</span>
+<span class="nc" id="L141">		return ResponseEntity.ok().build();</span>
+	}
+
+	@ApiOperation(
+			value = &quot;&quot;, 
+			httpMethod = &quot;GET&quot;, 
+			notes = &quot;Retorna um cliente a partir de um id.&quot;, 
+			response = ResponseEntity.class
+	)
+	@RequestMapping(value = &quot;/cliente/{id}&quot;, method = RequestMethod.GET)
+	public ResponseEntity&lt;Cliente&gt; findCliente(@PathVariable(&quot;id&quot;) Long id) {
+<span class="nc" id="L152">		Cliente cliente = clienteService.findOne(id);</span>
+<span class="nc" id="L153">		return ResponseEntity.status(HttpStatus.OK).body(cliente);</span>
+	}
+
+	@ApiOperation(
+			value = &quot;&quot;, 
+			httpMethod = &quot;POST&quot;, 
+			notes = &quot;Faz a compra de um serviço.&quot;, 
+			response = ResponseEntity.class
+	)
+	@RequestMapping(value = &quot;/cliente/{id}/compra&quot;, method = RequestMethod.POST)
+	public ResponseEntity&lt;?&gt; adquirirServico(@PathVariable(&quot;id&quot;) Long id, @RequestBody Compra compra) {
+<span class="nc" id="L164">		Cliente cliente = clienteService.findOne(id);</span>
+
+<span class="nc bnc" id="L166" title="All 2 branches missed.">		if (cliente == null) {</span>
+<span class="nc" id="L167">			return ResponseEntity.notFound().build();</span>
+		}
+<span class="nc" id="L169">		compraService.save(compra);</span>
+<span class="nc" id="L170">		cliente.getCompras().add(compra);</span>
+<span class="nc" id="L171">		clienteService.save(cliente);</span>
+<span class="nc" id="L172">		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().build().toUri();</span>
+<span class="nc" id="L173">		return ResponseEntity.created(uri).build();</span>
+
+	}
+
+	@ApiOperation(
+			value = &quot;&quot;, 
+			httpMethod = &quot;GET&quot;, 
+			notes = &quot;Faz o pagamento de uma compra.&quot;, 
+			response = ResponseEntity.class
+	)
+	@RequestMapping(value = &quot;/cliente/{idCliente}/compra/{idCompra}&quot;, params = {
+			&quot;operacao=pagamento&quot; }, method = RequestMethod.GET)
+	public ResponseEntity&lt;?&gt; pagarServico(@PathVariable(&quot;idCliente&quot;) Long idCliente,
+										  @PathVariable(&quot;idCompra&quot;) Long idCompra) {
+		
+<span class="nc" id="L188">		Cliente cliente = clienteService.findOne(idCliente);</span>
+<span class="nc" id="L189">		Compra compra = compraService.findOne(idCompra);</span>
+
+<span class="nc bnc" id="L191" title="All 4 branches missed.">		if (cliente == null || compra == null) {</span>
+<span class="nc" id="L192">			return ResponseEntity.notFound().build();</span>
+		}
+
+<span class="nc" id="L195">		cliente.pagar(compra.getId());</span>
+<span class="nc" id="L196">		clienteService.save(cliente);</span>
+<span class="nc" id="L197">		return ResponseEntity.ok().build();</span>
+	}
+
+	@ApiOperation(
+			value = &quot;&quot;, 
+			httpMethod = &quot;POST&quot;, 
+			notes = &quot;Persiste uma empresa&quot;, 
+			response = ResponseEntity.class
+	)
+	@RequestMapping(method = RequestMethod.POST)
+	public ResponseEntity&lt;Void&gt; salvar(@RequestBody Empresa empresa) {
+<span class="nc" id="L208">		empresa.setId(null);</span>
+<span class="nc" id="L209">		empresaService.save(empresa);</span>
+
+<span class="nc" id="L211">		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path(&quot;/{id}&quot;).buildAndExpand(empresa.getId())</span>
+<span class="nc" id="L212">				.toUri();</span>
+
+<span class="nc" id="L214">		return ResponseEntity.created(uri).build();</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.8.201612092310</span></div></body></html>
