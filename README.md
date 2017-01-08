@@ -29,7 +29,7 @@ Perfis disponíveis:
 - docker: este perfil permite criar uma imagem Docker;
 - test: ao ativar esse perfil a axecução dos testes será habilitada, e o plugin Jacoco irá criar relatórios de testes e validar se a porcentagem de cobertura de testes foi alcançada;
 
-# Swager
+# Swagger
 Framework utilizado para documentar a API servico-client. Para visualizar a documentação, basta acessar o recurso /api-doc.
 
 # Obtendo as imagens Docker
@@ -66,4 +66,3 @@ servico-api:
 servico-client:
 
 	docker run -p 8081:8081 -d --link api:api --name=client servico-client
-
