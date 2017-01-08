@@ -35,7 +35,7 @@ Framework utilizado para documentar a API servico-client. Para visualizar a docu
 # Obtendo as imagens Docker
 As imagens dos três projetos encontram se armazenadas no Dockerhub, com os nomes: [helciodasilva/servico-api](https://hub.docker.com/r/helciodasilva/servico-api), [helciodasilva/servico-client](https://hub.docker.com/r/helciodasilva/servico-client) e [helciodasilva/servico-mysql-server](https://hub.docker.com/r/helciodasilva/servico-mysql-server). 
 
-Para clonar uma das imagens basta executar o comando 
+Para clonar uma das imagens basta executar o comando:
 
 
 	git pull helciodasilva/<imagem-desejada>
@@ -55,7 +55,7 @@ Já para o projeto servico-mysql-server basta executar o plugin docker.
 
 Para que os containers se comuniquem é necessário que os mesmos sejam interligados, por esse motivo, o container criado a partir da imagem servico-mysql-server deverá ser chamado mysql e o container de servico-api deverá chamar api.
 
-- servico-mysql-server:
+servico-mysql-server:
 
 	docker run -p 3306:3306 -d --name mysql servico-mysql-server
 
