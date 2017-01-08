@@ -33,21 +33,20 @@ Perfis disponíveis:
 Framework utilizado para documentar a API servico-client. Para visualizar a documentação, basta acessar o recurso /api-doc.
 
 # Obtendo as imagens Docker
-As imagens dos três projetos encontram se armazenadas no Dockerhub, com os nomes: helciodasilva/servico-api, helciodasilva/servico-client e helciodasilva/servico-mysql-server.
+As imagens dos três projetos encontram se armazenadas no Dockerhub, com os nomes: [helciodasilva/servico-api](https://hub.docker.com/r/helciodasilva/servico-api), [helciodasilva/servico-client](https://hub.docker.com/r/helciodasilva/servico-client) e [helciodasilva/servico-mysql-server](https://hub.docker.com/r/helciodasilva/servico-mysql-server). 
 
-Para cloná-las basta executar o comando git pull helciodasilva/<imagem>
+Para cloná-las basta executar o comando git pull helciodasilva/imagem
 
-Além de clonar as imagens também é possível criar imagens a partir dos projetos.
+Também é possível criar imagens a partir dos projetos.
 
 Para os projetos servico-api e servico-client será necessário ativar o perfil docker.
 
-mvn docker:buid -P docker
+	mvn docker:build -P docker
 
 Já para o projeto servico-mysql-server basta executar o plugin.
 
-mvn docker:buid
+	mvn docker:build
 
-Para acessar o perfil de helciodasilva basta acessar: https://hub.docker.com/u/helciodasilva/
 
 # Criando container a partir das imagens
 
