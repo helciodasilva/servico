@@ -55,21 +55,15 @@ Já para o projeto servico-mysql-server basta executar o plugin docker.
 
 Para que os containers se comuniquem é necessário que os mesmos sejam interligados, por esse motivo, o container criado a partir da imagem servico-mysql-server deverá ser chamado mysql e o container de servico-api deverá chamar api.
 
-- servico-mysql-server: para criar um container a partir da imagem servico-mysql-server basta executar o comando:
+servico-mysql-server:
 
 	docker run -p 3306:3306 -d --name mysql servico-mysql-server
 
-- servico-api:
-
-
+servico-api:
+	
 	docker run -p 8080:8080 -d --link mysql:mysql --name=api servico-api
 
-
-- servico-client:
-
+servico-client:
 
 	docker run -p 8081:8081 -d --link api:api --name=client servico-client
-
-
-
 
