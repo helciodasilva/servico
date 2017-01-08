@@ -14,10 +14,10 @@ Módulos utilizados:
 - Spring Data: usado para persistir os dados no banco MySQL;
 - Thymeleaf: utilizado para criar as views do client;
 - Devtools: ferramenta usada para fazer HotDeploy da aplicação após cada alteração do projeto;
-- LiveReload: plugin usado para recarregar o navegador a cada alteração das views;
-- Spring Test: módulo utilizado para a criação dos Testes de Integração de recursos e repositórios;
+- LiveReload: plugin usado para recarregar o navegador a cada alteração nas views;
+- Spring Test: módulo utilizado para a criação dos Testes de Integração;
 - Spring Boot Maven Plugin: plugin Maven utilizado para criar o artefato executável de projetos Spring.
-- Spring Feign: módulo utilizado no projeto servico-client para consumir os recursos da API servico-api;
+- Spring Cloud: módulo utilizado no projeto servico-client para consumir os recursos da API servico-api;
 
 # Maven:
 Plugins utilizados:
@@ -35,7 +35,7 @@ Framework utilizado para documentar a API servico-client. Para visualizar a docu
 # Obtendo as imagens Docker
 As imagens dos três projetos encontram se armazenadas no Dockerhub, com os nomes: [helciodasilva/servico-api](https://hub.docker.com/r/helciodasilva/servico-api), [helciodasilva/servico-client](https://hub.docker.com/r/helciodasilva/servico-client) e [helciodasilva/servico-mysql-server](https://hub.docker.com/r/helciodasilva/servico-mysql-server). 
 
-Para clonar uma imagem basta executar o comando 
+Para clonar uma das imagens basta executar o comando 
 
 
 	git pull helciodasilva/<imagem-desejada>
@@ -55,14 +55,14 @@ Já para o projeto servico-mysql-server basta executar o plugin docker.
 
 Para que os containers se comuniquem é necessário que os mesmos sejam interligados, por esse motivo, o container criado a partir da imagem servico-mysql-server deverá ser chamado mysql e o container de servico-api deverá chamar api.
 
-servico-mysql-server:
+- servico-mysql-server:
 
 	docker run -p 3306:3306 -d --name mysql servico-mysql-server
 
 servico-api:
 	
-	docker run -p 8080:8080 -d --link mysql:mysql --name=api servico-api
+	docker run -p 8080:8080 -d --link api:api --name=api servico-api
 
 servico-client:
 
-	docker run -p 8081:8081 -d --link api:api --name=client servico-client
+	docker run -p 8081:8081 -d --link client:client --name=client servico-client
