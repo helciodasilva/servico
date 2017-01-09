@@ -12,7 +12,7 @@ O projeto foi divido em três partes:
 Módulos utilizados:
 - Spring Web: utilizado para a criação da API RestFull servico-api e do client servico-client;
 - Spring Data: usado para persistir os dados no banco MySQL;
-- Thymeleaf: utilizado para criar as views do client;
+- Thymeleaf: Template Engine utilizado para criar as views do client;
 - Devtools: ferramenta usada para fazer HotDeploy da aplicação após cada alteração do projeto;
 - LiveReload: plugin usado para recarregar o navegador a cada alteração nas views;
 - Spring Test: módulo utilizado para a criação dos Testes de Integração;
