@@ -43,11 +43,11 @@ Para clonar uma das imagens basta executar o comando:
 
 Também é possível criar imagens a partir dos projetos.
 
-Para os projetos servico-api e servico-client será necessário ativar o perfil docker.
+Para os projetos servico-api e servico-client será necessário gerar o artefato do projeto e ativar o perfil docker.
 
-	mvn docker:build -P docker
+	mvn package -P docker
 
-Já para o projeto servico-mysql-server basta executar o plugin docker.
+Já para o projeto servico-mysql-server basta apenas executar o plugin docker.
 
 	mvn docker:build
 
