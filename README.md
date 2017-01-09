@@ -8,7 +8,7 @@ O projeto foi divido em três partes:
 
 # Tecnologias utilizadas no projeto:
 
-# Spring Framework
+### Spring Framework
 Módulos utilizados:
 - Spring Web: utilizado para a criação da API RestFull servico-api e do client servico-client;
 - Spring Data: usado para persistir os dados no banco MySQL;
@@ -19,7 +19,7 @@ Módulos utilizados:
 - Spring Boot Maven Plugin: plugin Maven utilizado para criar o artefato executável de projetos Spring.
 - Spring Cloud: módulo utilizado no projeto servico-client para consumir os recursos da API servico-api;
 
-# Maven:
+### Maven:
 Plugins utilizados:
 - Docker Maven Plugin: plugin utilizado para criar imagens de projetos Maven;
 - Jacoco Maven Plugin: plugin usado para criar relatórios de testes e validar se a porcentagem de cobertura de testes foi alcançada;
@@ -29,7 +29,7 @@ Perfis disponíveis:
 - docker: este perfil permite criar imagens Docker;
 - test: ao ativar esse perfil a axecução dos testes será habilitada, e o plugin Jacoco irá criar relatórios de testes e validar se a porcentagem de cobertura de testes foi alcançada;
 
-# Swagger
+### Swagger
 Foi o framework utilizado para documentar a API servico-client. Para visualizar a documentação, basta acessar o recurso /api-doc.
 
 # Obtendo as imagens Docker
