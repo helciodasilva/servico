@@ -16,14 +16,14 @@ Módulos utilizados:
 - Devtools: ferramenta usada para fazer HotDeploy da aplicação após cada alteração do projeto;
 - LiveReload: plugin usado para recarregar o navegador a cada alteração nas views;
 - Spring Test: módulo utilizado para a criação dos Testes de Integração;
-- Spring Boot Maven Plugin: plugin Maven utilizado para criar o artefato executável de projetos Spring.
+- Spring Boot Maven Plugin: plugin Maven utilizado para criar o artefato executável de projetos Spring Spring Boot.
 - Spring Cloud: módulo utilizado no projeto servico-client para consumir os recursos da API servico-api;
 
 ### Maven:
 Plugins utilizados:
 - Docker Maven Plugin: plugin utilizado para criar imagens de projetos Maven;
 - Jacoco Maven Plugin: plugin usado para criar relatórios de testes e validar se a porcentagem de cobertura de testes foi alcançada;
-- Spring Boot Maven Plugin: este plugin é utilizado para criar artefatos executáveis de projetos Spring.
+- Spring Boot Maven Plugin: este plugin é utilizado para criar artefatos executáveis de projetos Spring Boot.
 
 Perfis disponíveis:
 - docker: este perfil permite criar imagens Docker;
