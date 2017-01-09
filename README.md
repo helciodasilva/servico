@@ -38,7 +38,7 @@ As imagens dos três projetos encontram se armazenadas no Dockerhub, com os nome
 Para clonar uma das imagens basta executar o comando:
 
 
-	git pull helciodasilva/<imagem-desejada>
+	git pull helciodasilva/<imagem-desejada>:v1
 
 
 Também é possível criar imagens a partir dos projetos.
