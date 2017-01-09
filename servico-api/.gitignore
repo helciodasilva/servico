@@ -1,0 +1,30 @@
+# Maven
+target/
+
+# Netbeans
+nb-configuration.xml
+
+# Eclipse
+.classpath
+#.project
+.settings/
+/bin/
+
+# IntelliJ
+.idea/
+*.iml
+*.iws
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
+*~*
+
+# Selenium
+/phantomjsdriver.log
